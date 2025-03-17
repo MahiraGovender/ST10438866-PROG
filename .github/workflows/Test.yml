@@ -1,0 +1,30 @@
+
+name: C# Build and Syntax Check
+
+on:
+ push:
+  branches: ["master"] #Change to branch you push to
+ pull_request: #Indentation is important
+   branches: ["master"]
+
+jobs:
+   buid:
+     runs-on: ubuntu-latest
+
+     steps:
+     - name: Checout Code #Cones the repo
+       uses: actions/checkout@v4
+
+     #Setup SDK.Net
+     - name: Setup SDK
+       uses: actions/setup-dotnet@v4
+       with:
+         dotnet-version: 9.0.x #Change to framework used
+
+     # Restore Dependencies
+     - name: Restore Dependencies
+       run: dotnet restore
+       
+     # Run Unit Tests
+     - name: Buid
+       run: dotnet buid --configuiration Release
