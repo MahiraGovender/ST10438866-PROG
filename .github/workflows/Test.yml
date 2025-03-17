@@ -8,7 +8,7 @@ on:
    branches: ["master"]
 
 jobs:
-   buid:
+   builds:
      runs-on: ubuntu-latest
 
      steps:
@@ -24,7 +24,11 @@ jobs:
      # Restore Dependencies
      - name: Restore Dependencies
        run: dotnet restore
-       
+
      # Run Unit Tests
+     - name: Unit Tests
+       run: dotnet test
+
+     # Buid the project
      - name: Build
        run: dotnet build --configuiration Release
